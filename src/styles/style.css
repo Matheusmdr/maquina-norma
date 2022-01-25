@@ -1,0 +1,16 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background: #282c34;
+}
+
+.app-title{
+    color:#61dafb;
+    text-align: center;
+    padding-top: 4rem;
+    font-size: 2.4rem;
+}
