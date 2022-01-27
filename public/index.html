@@ -14,21 +14,85 @@
 
 <body>
     <h1 class="app-title">Máquina Norma</h1>
-    <section class=" section sum-section">
-
+    <div class="button-container">
+        <button id="add-button">Adição</button>
+        <button id="mult-button">Multiplicação</button>
+        <button id="test-button">Testes de Valores</button>
+        <button id="prime-button">Verificar se um número é primo</button>
+        <button id="fat-pot-button">Fatorial e potenciação de 5</button>
+    </div>
+    <section class="section sum-section">
+        <h2>
+            Adição entre dois registradores sem preservar conteúdo
+        </h2>
+        <div class="inputs-container">
+            <input type="text" />
+            <span>+</span>
+            <input type="text" />
+            <span>=</span>
+        </div>
+        <div class="registers-container"><span>Registradores:</span></div>
+    </section>
+    <section class="section sum-content-section">
+        <h2>
+            Adição entre dois registradores preservando conteúdo
+        </h2>
+        <div class="inputs-container">
+            <input type="text" />
+            <span>+</span>
+            <input type="text" />
+            <span>=</span>
+        </div>
+        <div class="registers-container"><span>Registradores:</span></div>
     </section>
     <section class="section mult-section">
-
+        <h2>
+            Multiplicação entre dois registradores
+        </h2>
+        <div class="inputs-container">
+            <input type="text" />
+            <span>+</span>
+            <input type="text" />
+            <span>=</span>
+        </div>
+        <div class="registers-container"><span>Registradores:</span></div>
     </section>
-    <section class="section test-section">
-
+    <section class="section test-minor-section">
+        <h2>
+            Teste A < B </h2> <div class="inputs-container">
+                <input type="text" />
+                <span>+</span>
+                <input type="text" />
+                <span>=</span>
+                </div>
+                <div class="registers-container"><span>Registradores:</span></div>
+    </section>
+    <section class="section test-minorequal-section">
+        <h2>
+            Teste A <= B </h2> <div class="inputs-container">
+                <input type="text" />
+                <span>+</span>
+                <input type="text" />
+                <span>=</span>
+                </div>
+                <div class="registers-container"><span>Registradores:</span></div>
     </section>
     <section class="section prime-section">
-
+        <h2>
+            Testar se o valor de um registrador é um número primo
+        </h2>
+        <div class="inputs-container">
+            <input type="text" />
+        </div>
+        <div class="registers-container"><span>Registradores:</span></div>
     </section>
     <section class="section fat-pot-five">
-
+        <h2>
+            Fatorial e Potenciação do número 5
+        </h2>
+        <div class="registers-container"><span>Registradores:</span></div>
     </section>
+    <script src="/src/scripts/script.js"></script>
 </body>
 
 </html>
