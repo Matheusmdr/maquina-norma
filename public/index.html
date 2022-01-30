@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/src/styles/style.css">
+    <link rel="stylesheet" href="../src/styles/style.css">
     <title>Máquina Norma</title>
 </head>
 
@@ -26,33 +26,46 @@
             Adição entre dois registradores sem preservar conteúdo
         </h2>
         <div class="inputs-container">
-            <input type="text" />
+            <input type="number" id="sum1" onchange="handleSumWithoutPreserving(event)" onkeyup="handleSumWithoutPreserving(event)"/>
             <span>+</span>
-            <input type="text" />
-            <span>=</span>
+            <input type="number" id="sum2" onchange="handleSumWithoutPreserving(event)" onkeyup="handleSumWithoutPreserving(event)"/>
+            <span id="resSum">=</span>
         </div>
-        <div class="registers-container"><span>Registradores:</span></div>
+        <div class="registers-container">
+            <span>Registradores:</span>
+            <br>
+            <span id="sum-A">A =  </span>
+            <span id="sum-B">B =  </span>
+        </div>
     </section>
     <section class="section sum-content-section">
         <h2>
             Adição entre dois registradores preservando conteúdo
         </h2>
         <div class="inputs-container">
-            <input type="text" />
+            <input type="number" id="sum-content-1" onchange="handleSumPreserving(event)" onkeyup="handleSumPreserving(event)"/>
             <span>+</span>
-            <input type="text" />
-            <span>=</span>
+            <input type="number" id="sum-content-2" onchange="handleSumPreserving(event)" onkeyup="handleSumPreserving(event)"/>
+            <span  id="resSumContent">=</span>
         </div>
-        <div class="registers-container"><span>Registradores:</span></div>
+        <div class="registers-container">
+            <span>Registradores:</span>
+            <br>
+            <span id="sum-content-A">A =  </span>
+            <span id="sum-content-B">B =  </span>
+            <span id="sum-content-C">C =  </span>
+            <span id="sum-content-D">D =  </span>
+            <span id="sum-content-E">E =  </span>
+        </div>
     </section>
     <section class="section mult-section">
         <h2>
             Multiplicação entre dois registradores
         </h2>
         <div class="inputs-container">
-            <input type="text" />
+            <input type="number" />
             <span>+</span>
-            <input type="text" />
+            <input type="number" />
             <span>=</span>
         </div>
         <div class="registers-container"><span>Registradores:</span></div>
@@ -60,9 +73,9 @@
     <section class="section test-minor-section">
         <h2>
             Teste A < B </h2> <div class="inputs-container">
-                <input type="text" />
+                <input type="number" />
                 <span>+</span>
-                <input type="text" />
+                <input type="number" />
                 <span>=</span>
                 </div>
                 <div class="registers-container"><span>Registradores:</span></div>
@@ -70,9 +83,9 @@
     <section class="section test-minorequal-section">
         <h2>
             Teste A <= B </h2> <div class="inputs-container">
-                <input type="text" />
+                <input type="number"/>
                 <span>+</span>
-                <input type="text" />
+                <input type="number"/>
                 <span>=</span>
                 </div>
                 <div class="registers-container"><span>Registradores:</span></div>
@@ -82,7 +95,7 @@
             Testar se o valor de um registrador é um número primo
         </h2>
         <div class="inputs-container">
-            <input type="text" />
+            <input type="number" />
         </div>
         <div class="registers-container"><span>Registradores:</span></div>
     </section>
@@ -92,7 +105,8 @@
         </h2>
         <div class="registers-container"><span>Registradores:</span></div>
     </section>
-    <script src="/src/scripts/script.js"></script>
+    <script src="../src/scripts/script.js"></script>
+    <script src="../src/scripts/operations.js"></script>
 </body>
 
 </html>

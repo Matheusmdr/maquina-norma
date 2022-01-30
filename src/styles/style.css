@@ -62,10 +62,13 @@ body{
 }
 
 .inputs-container input{
+    text-align: center;
     padding:0.25rem 0.3rem
 }
 
 .registers-container{
+    display: flex;
+    flex-direction: column;
     text-align: center;
     color: #fff;
     font-weight: 700;
