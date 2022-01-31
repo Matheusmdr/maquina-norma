@@ -63,12 +63,19 @@
             Multiplicação entre dois registradores
         </h2>
         <div class="inputs-container">
-            <input type="number" />
-            <span>+</span>
-            <input type="number" />
-            <span>=</span>
+            <input type="number" id="mult-1" onchange="handleMultiplication(event)" onkeyup="handleMultiplication(event)"/>
+            <span>x</span>
+            <input type="number" id="mult-2" onchange="handleMultiplication(event)" onkeyup="handleMultiplication(event)"/>
+            <span id="resMult">=</span>
         </div>
-        <div class="registers-container"><span>Registradores:</span></div>
+        <div class="registers-container">
+            <span>Registradores:</span>
+            <br>
+            <span id="mult-A">A =  </span>
+            <span id="mult-B">B =  </span>
+            <span id="mult-C">C =  </span>
+            <span id="mult-D">D =  </span>
+        </div>
     </section>
     <section class="section test-minor-section">
         <h2>

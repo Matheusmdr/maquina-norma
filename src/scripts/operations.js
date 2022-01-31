@@ -28,6 +28,28 @@ const sub = (R) =>{
 
 const test = (value) => (value === 0) ? true : false
 
+const copyRegister_positive = (origin, dest) => {
+    while(origin.magnitude != 0){
+        sub(origin);
+        for(let i = 0; i < dest.length; i++){
+            add(dest[i]);
+        }
+    }
+}
+
+const copyRegister_negative = (origin, dest) => {
+    while(origin.magnitude != 0){
+        add(origin);
+        for(let i = 0; i < dest.length; i++){
+            sub(dest[i]);
+        }
+    }
+}
+
+
+const copyRegister = (origin, dest) => ((test(origin.signal)) ? copyRegister_positive(origin, dest) : copyRegister_negative(origin, dest))
+
+
 const getRegister = (value) => {
     let R = {signal: ((value<0) ? 1 : 0), magnitude: 0}
 
@@ -62,28 +84,6 @@ const sumWithoutPreserving = (a,b) => {
     return [A, B]
 }
 
-const copyRegister_positive = (origin, dest) => {
-    while(origin.magnitude != 0){
-        sub(origin);
-        for(let i = 0; i < dest.length; i++){
-            add(dest[i]);
-        }
-    }
-}
-
-const copyRegister_negative = (origin, dest) => {
-    while(origin.magnitude != 0){
-        add(origin);
-        for(let i = 0; i < dest.length; i++){
-            sub(dest[i]);
-        }
-    }
-}
-
-
-const copyRegister = (origin, dest) => ((test(origin.signal)) ? copyRegister_positive(origin, dest) : copyRegister_negative(origin, dest))
-
-
 const SumPreserving = (a,b) => {
     let A = getRegister(a);
     let B = getRegister(b);
@@ -116,4 +116,60 @@ const SumPreserving = (a,b) => {
     return [A, B, C, D, E]
 }
 
+const multiplication = (a,b) => {
+    let A = getRegister(a);
+    let B = getRegister(b);
+    let C = getRegister(0);
+    let D = getRegister(0);
 
+    copyRegister(A,[C]);
+
+    if(test(C.signal)){ // C >= 0
+        if(test(B.signal)){ // B >= 0
+
+            while(C.magnitude != 0) {
+
+                while(B.magnitude != 0){add(A); sub(B); add(D);}
+
+                copyRegister(D,[B]);
+                sub(C);
+            }
+        }
+        else{ // B < 0
+            
+            while(C.magnitude != 0) {
+
+                while(B.magnitude != 0){sub(A); add(B); sub(D);}
+
+                copyRegister(D,[B]);
+                sub(C);
+            }
+
+        }
+    }
+    else{ // C < 0
+        if(test(B.signal)){ // B >= 0
+
+            while(C.magnitude != 0) {
+
+                while(B.magnitude != 0){sub(A); sub(B); add(D);}
+
+                copyRegister(D,[B]);
+                add(C);
+            }
+            
+        }
+        else{ // B < 0
+            
+            while(C.magnitude != 0) {
+
+                while(B.magnitude != 0){add(A); add(B); sub(D);}
+
+                copyRegister(D,[B]);
+                add(C);
+            }
+        }
+    }
+
+    return [A, B, C, D]
+}

@@ -176,6 +176,60 @@ const handleSumPreserving = (event) =>{
     }
 }
 
+const handleMultiplication = (event) =>{
+    let input = event.target;
+    let res = document.querySelector("#resMult");
+    let regA = document.querySelector("#mult-A");
+    let regB = document.querySelector("#mult-B");
+    let regC = document.querySelector("#mult-C");
+    let regD = document.querySelector("#mult-D");
+
+    res.innerHTML = "=";
+    regA.innerHTML = "A = ";
+    regB.innerHTML = "B = ";
+    regC.innerHTML = "C = ";
+    regD.innerHTML = "D = ";
+
+    if(input.id === "mult-1"){
+        //console.log(input.value);
+        if(input.value !== "" && isNumber(input.value)){
+
+            let input2 = document.querySelector("#mult-2");
+
+            //console.log(input2.value);
+
+            if(input2.value !== "" && isNumber(input2.value)){
+                let registers = multiplication(input.value,input2.value);
+
+                res.innerHTML = "=  "+((test(registers[0].signal)) ? registers[0].magnitude : (-registers[0].magnitude));
+
+                regA.innerHTML = "A = ("+registers[0].signal+", "+registers[0].magnitude+")";
+                regB.innerHTML = "B = ("+registers[1].signal+", "+registers[1].magnitude+")";
+                regC.innerHTML = "C = ("+registers[2].signal+", "+registers[2].magnitude+")";
+                regD.innerHTML = "D = ("+registers[3].signal+", "+registers[3].magnitude+")";
+            }
+        }
+    }
+    else{
+        //console.log(input.value);
+        if(input.value !== "" && isNumber(input.value)){
+            let input1 = document.querySelector("#mult-1");
+
+            //console.log(input1.value);
+
+            if(input1.value !== "" && isNumber(input1.value)){
+                let registers = multiplication(input1.value,input.value);
+
+                res.innerHTML = "=  "+((test(registers[0].signal)) ? registers[0].magnitude : (-registers[0].magnitude));
+
+                regA.innerHTML = "A = ("+registers[0].signal+", "+registers[0].magnitude+")";
+                regB.innerHTML = "B = ("+registers[1].signal+", "+registers[1].magnitude+")";
+                regC.innerHTML = "C = ("+registers[2].signal+", "+registers[2].magnitude+")";
+                regD.innerHTML = "D = ("+registers[3].signal+", "+registers[3].magnitude+")";
+            }
+        }
+    }
+}
 
 //Start Panel
 let sumSection = document.querySelector(".sum-section");
