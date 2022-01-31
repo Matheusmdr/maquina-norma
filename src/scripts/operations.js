@@ -47,7 +47,7 @@ const copyRegister_negative = (origin, dest) => {
 }
 
 
-const copyRegister = (origin, dest) => ((test(origin.signal)) ? copyRegister_positive(origin, dest) : copyRegister_negative(origin, dest)) //copy one register to others
+const copyRegister = (origin, dest) => ((test(origin.signal)) ? copyRegister_positive(origin, dest) : copyRegister_negative(origin, dest)) //copy one register to others (dest needs to be empty)
 
 
 const getRegister = (value) => {
@@ -57,6 +57,14 @@ const getRegister = (value) => {
     else for(;value != 0;R.magnitude++,value++);
 
     return R
+}
+
+const resetRegister = A =>{
+    if(test(A.signal)) while(A.magnitude != 0) A.magnitude--;
+    else {
+        while(A.magnitude != 0) A.magnitude++;
+        A.signal--;
+    }
 }
 
 const sumWithoutPreserving = (a,b) => {
@@ -282,4 +290,90 @@ const primeNumber = a => {
     }
 
     return [true, A, B, C, D]; //it's not prime number
+}
+
+
+const power = a => {
+    let A = getRegister(a);
+    let B = getRegister(5);
+    let C = getRegister(0);
+    let D = getRegister(0);
+    let E = getRegister(0);
+
+    if(test(A.magnitude)) {  // A == 0
+        let F = getRegister(0);
+        add(F)
+
+        copyRegister(F, [A])
+        return [A,B,C,D,E]
+    }
+
+    // A > 0
+    copyRegister(B, [C, D])
+    copyRegister(D, [B])
+
+    sub(A)
+
+    while(A.magnitude != 0){
+        copyRegister(B, [D,E])
+
+        C = (multiplication(C.magnitude,D.magnitude))[0]
+
+        resetRegister(D)
+        copyRegister(E, [B])
+
+        sub(A)
+    }
+
+    return [A,B,C,D,E]
+}
+
+const fatorial = a => {
+    let A = getRegister(a); 
+    let B = getRegister(0);
+    let C = getRegister(0);
+    let D = getRegister(0);
+    let E = getRegister(0);
+    let F = getRegister(0);
+
+    while (A.magnitude != 0) {
+      sub(A)
+      add(B)
+      add(C)
+      add(D)
+    }
+
+    sub(B)
+    sub(C)
+
+    while (D.magnitude != 0) {
+      sub(D)
+      add(A)
+    }
+
+    sub(C)
+
+    while (C.magnitude != 0) {
+      while (A.magnitude != 0) {
+        add(E)
+        sub(A)
+      }
+      while (E.magnitude != 0) {
+        while (B.magnitude != 0) {
+          add(A)
+          add(F)
+          sub(B)
+        }
+        while (F.magnitude != 0) {
+          add(B)
+          sub(F)
+        }
+        sub(E)
+      }
+      sub(B)
+      sub(C)
+    }
+
+    
+    return [A,B,C,D,E,F]
 }

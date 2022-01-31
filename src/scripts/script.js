@@ -8,7 +8,15 @@ const handleClickButton = (event) => {
     let section4 = document.querySelector(".test-minor-section")
     let section5 = document.querySelector(".test-minorequal-section")
     let section6 = document.querySelector(".prime-section")
-    let section7 = document.querySelector(".fat-pot-five")
+    let section7 = document.querySelector(".pot-five")
+    let section8 = document.querySelector(".fat-five")
+    let inputs = document.getElementsByTagName("input")
+
+    //Reset inputs
+    for(let i = 0; i < inputs.length; i++){
+        inputs[i].value = "";
+        inputs[i].dispatchEvent(new Event("change"));
+    }
 
     let buttonId = event.target.id
     switch (buttonId) {
@@ -20,6 +28,7 @@ const handleClickButton = (event) => {
             section5.style.display = "none";
             section6.style.display = "none";
             section7.style.display = "none";
+            section8.style.display = "none";
             break;
         case 'mult-button':
             section1.style.display = "none";
@@ -29,6 +38,7 @@ const handleClickButton = (event) => {
             section5.style.display = "none";
             section6.style.display = "none";
             section7.style.display = "none";
+            section8.style.display = "none";
             break;
         case 'test-button':
             section1.style.display = "none";
@@ -38,6 +48,7 @@ const handleClickButton = (event) => {
             section5.style.display = "block";
             section6.style.display = "none";
             section7.style.display = "none";
+            section8.style.display = "none";
             break;
         case 'prime-button':
             section1.style.display = "none";
@@ -47,6 +58,7 @@ const handleClickButton = (event) => {
             section5.style.display = "none";
             section6.style.display = "block";
             section7.style.display = "none";
+            section8.style.display = "none";
             break;
         case 'fat-pot-button':
             section1.style.display = "none";
@@ -56,6 +68,7 @@ const handleClickButton = (event) => {
             section5.style.display = "none";
             section6.style.display = "none";
             section7.style.display = "block";
+            section8.style.display = "block";
             break;
     }
 }
@@ -70,7 +83,7 @@ const isNumber = num => {
     return (regex.test(num) ? true  : false);
 }
 
-const prime = num => {
+const positiveNumber = num => {
     let regex = new RegExp("^[0-9]+$");
     return (regex.test(num) ? true  : false);
 }
@@ -346,7 +359,7 @@ const handlePrimeNumber = (event) =>{
     regD.innerHTML = "D = ";
 
     //console.log(input.value);
-    if(input.value !== "" && prime(input.value)){
+    if(input.value !== "" && positiveNumber(input.value)){
         let registers = primeNumber(input.value);
 
         input.style.background = ((registers[0]) ? "green" : "red");
@@ -360,8 +373,63 @@ const handlePrimeNumber = (event) =>{
     }
 }
 
+const handlePower = (event) =>{
+    let input = event.target;
+    let res = document.querySelector("#resPower");
+    let regA = document.querySelector("#power-A");
+    let regB = document.querySelector("#power-B");
+    let regC = document.querySelector("#power-C");
+    let regD = document.querySelector("#power-D");
+    let regE = document.querySelector("#power-E");
+
+    res.innerHTML = "=";
+    regA.innerHTML = "A = ";
+    regB.innerHTML = "B = ";
+    regC.innerHTML = "C = ";
+    regD.innerHTML = "D = ";
+    regE.innerHTML = "E = ";
+
+
+    if(input.id === "power"){
+        //console.log(input.value);
+        if(input.value !== "" && positiveNumber(input.value)){
+            let registers = power(input.value);
+
+            res.innerHTML = "=  "+((test(registers[2].signal)) ? registers[2].magnitude : (-registers[2].magnitude));
+
+            regA.innerHTML = "A = ("+registers[0].signal+", "+registers[0].magnitude+")";
+            regB.innerHTML = "B = ("+registers[1].signal+", "+registers[1].magnitude+")";
+            regC.innerHTML = "C = ("+registers[2].signal+", "+registers[2].magnitude+")";
+            regD.innerHTML = "D = ("+registers[3].signal+", "+registers[3].magnitude+")";
+            regE.innerHTML = "E = ("+registers[4].signal+", "+registers[4].magnitude+")";
+        }
+    }
+}
+
+const handleFatorial = () =>{
+    let res = document.querySelector("#resFat");
+    let regA = document.querySelector("#fat-A");
+    let regB = document.querySelector("#fat-B");
+    let regC = document.querySelector("#fat-C");
+    let regD = document.querySelector("#fat-D");
+    let regE = document.querySelector("#fat-E");
+    let regF = document.querySelector("#fat-F");
+
+    let registers = fatorial(5);
+    res.innerHTML = "Fatorial = "+((test(registers[0].signal)) ? registers[0].magnitude : (-registers[0].magnitude));
+    regA.innerHTML = "A = ("+registers[0].signal+", "+registers[0].magnitude+")";
+    regB.innerHTML = "B = ("+registers[1].signal+", "+registers[1].magnitude+")";
+    regC.innerHTML = "C = ("+registers[2].signal+", "+registers[2].magnitude+")";
+    regD.innerHTML = "D = ("+registers[3].signal+", "+registers[3].magnitude+")";
+    regE.innerHTML = "E = ("+registers[4].signal+", "+registers[4].magnitude+")";
+    regF.innerHTML = "F = ("+registers[5].signal+", "+registers[5].magnitude+")";
+}
+
 //Start Panel
 let sumSection = document.querySelector(".sum-section");
 let sumContentSection = document.querySelector(".sum-content-section");
 sumSection.style.display = "block";
 sumContentSection.style.display = "block";
+
+
+handleFatorial()

@@ -116,7 +116,7 @@
             Testar se o valor de um registrador é um número primo
         </h2>
         <div class="inputs-container">
-            <input type="number" placeholder="número" min=0 id="prime-number" onchange="handlePrimeNumber(event)" onkeyup="handlePrimeNumber(event)"/>
+            <input type="number" placeholder="número ( >= 0)" min=0 id="prime-number" onchange="handlePrimeNumber(event)" onkeyup="handlePrimeNumber(event)"/>
         </div>
         <div class="registers-container">
             <span>Registradores:</span>
@@ -127,14 +127,47 @@
             <span id="prime-D">D = </span>
         </div>
     </section>
-    <section class="section fat-pot-five">
+    <section class="section pot-five">
         <h2>
-            Fatorial e Potenciação do número 5
+            Potenciação do número 5
         </h2>
-        <div class="registers-container"><span>Registradores:</span></div>
+        <div class="inputs-container">
+            <input type="number" placeholder="valor( >= 0)" min=0 id="power" onchange="handlePower(event)" onkeyup="handlePower(event)"/>
+            <span id="resPower">=</span>
+        </div>
+        <div class="registers-container">
+            <span>Registradores:</span>
+            <br>
+            <span id="power-A">A = </span>
+            <span id="power-B">B = </span>
+            <span id="power-C">C = </span>
+            <span id="power-D">D = </span>
+            <span id="power-E">E = </span>
+        </div>
     </section>
-    <script src="../src/scripts/script.js"></script>
+    <section class="section fat-five">
+        <h2>
+            Fatorial do número 5
+        </h2>
+        <div class="inputs-container">
+            <span id="resFat">Fatorial = </span>
+        </div>
+        <div class="registers-container">
+            <span>Registradores:</span>
+            <br>
+            <span id="fat-A">A = </span>
+            <span id="fat-B">B = </span>
+            <span id="fat-C">C = </span>
+            <span id="fat-D">D = </span>
+            <span id="fat-E">E = </span>
+            <span id="fat-F">F = </span>
+            <br>
+            <br>
+            <br>
+        </div>
+    </section>
     <script src="../src/scripts/operations.js"></script>
+    <script src="../src/scripts/script.js"></script>
 </body>
 
 </html>
