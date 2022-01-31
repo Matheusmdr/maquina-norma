@@ -1,5 +1,5 @@
 
-const add = (R) =>{
+const add = (R) =>{ // add 1 to a register
     if(test(R.signal)){ //>= 0
         R.magnitude++;
     }
@@ -11,7 +11,7 @@ const add = (R) =>{
     }
 }
 
-const sub = (R) =>{
+const sub = (R) =>{ //sub 1 from a register
     if(test(R.signal)){ // >= 0
         if(test(R.magnitude)){ // = 0
             R.signal++;
@@ -26,9 +26,9 @@ const sub = (R) =>{
     }
 }
 
-const test = (value) => (value === 0) ? true : false
+const test = (value) => (value === 0) ? true : false //test if the value is 0
 
-const copyRegister_positive = (origin, dest) => {
+const copyRegister_positive = (origin, dest) => { 
     while(origin.magnitude != 0){
         sub(origin);
         for(let i = 0; i < dest.length; i++){
@@ -47,7 +47,7 @@ const copyRegister_negative = (origin, dest) => {
 }
 
 
-const copyRegister = (origin, dest) => ((test(origin.signal)) ? copyRegister_positive(origin, dest) : copyRegister_negative(origin, dest))
+const copyRegister = (origin, dest) => ((test(origin.signal)) ? copyRegister_positive(origin, dest) : copyRegister_negative(origin, dest)) //copy one register to others
 
 
 const getRegister = (value) => {
@@ -172,4 +172,60 @@ const multiplication = (a,b) => {
     }
 
     return [A, B, C, D]
+}
+
+const lessThan = (a,b) => {
+    let A = getRegister(a);
+    let B = getRegister(b);
+
+    if(test(A.signal)){ // A >= 0
+        if(test(B.signal)){ // B >= 0
+            while(A.magnitude != 0 && B.magnitude != 0) {sub(A); sub(B);}
+
+            if(test(A.magnitude) && !test(B.magnitude)) return [true, A, B] // A < B
+        }
+
+        return [false, A, B] // A >= B
+    }
+    else{ // A < 0
+        if(!test(B.signal)){ // B < 0
+            while(A.magnitude != 0 && B.magnitude != 0) {add(A); add(B);}
+
+            if(test(B.magnitude) && !test(A.magnitude)) return [true, A, B] // A < B
+
+            return [false, A, B] // A >= B
+        }
+
+        return [true, A, B] //B > 0
+    }
+}
+
+const lessThanEqual = (a,b) => {
+    let A = getRegister(a);
+    let B = getRegister(b);
+
+    if(test(A.signal)){ // A >= 0
+        if(test(B.signal)){ // B >= 0
+            while(A.magnitude != 0 && B.magnitude != 0) {sub(A); sub(B);}
+
+            if(test(A.magnitude) && !test(B.magnitude)) return [true, A, B] // A < B
+
+            if(test(A.magnitude) && test(B.magnitude)) return [true, A, B] // A == B
+        }
+
+        return [false, A, B] // B < 0
+    }
+    else{ // A < 0
+        if(!test(B.signal)){ // B < 0
+            while(A.magnitude != 0 && B.magnitude != 0) {add(A); add(B);}
+
+            if(test(B.magnitude) && !test(A.magnitude)) return [true, A, B] // A < B
+
+            if(test(B.magnitude) && test(A.magnitude)) return [true, A, B]  // A == B
+
+            return [false, A, B] // A > B
+        }
+
+        return [true, A, B] // B >= 0
+    }
 }

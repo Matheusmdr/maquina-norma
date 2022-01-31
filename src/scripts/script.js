@@ -231,6 +231,100 @@ const handleMultiplication = (event) =>{
     }
 }
 
+const handleLessThan = (event) =>{
+    let input = event.target;
+    let res = document.querySelector("#resLessThan");
+    let regA = document.querySelector("#lessThan-A");
+    let regB = document.querySelector("#lessThan-B");
+
+    res.innerHTML = "=";
+    regA.innerHTML = "A = ";
+    regB.innerHTML = "B = ";
+
+    if(input.id === "lessThan-1"){
+        //console.log(input.value);
+        if(input.value !== "" && isNumber(input.value)){
+
+            let input2 = document.querySelector("#lessThan-2");
+
+            //console.log(input2.value);
+
+            if(input2.value !== "" && isNumber(input2.value)){
+                let registers = lessThan(input.value,input2.value);
+
+                res.innerHTML = "=  "+((registers[0]) ? "Verdadeiro" : "Falso");
+
+                regA.innerHTML = "A = ("+registers[1].signal+", "+registers[1].magnitude+")";
+                regB.innerHTML = "B = ("+registers[2].signal+", "+registers[2].magnitude+")";
+            }
+        }
+    }
+    else{
+        //console.log(input.value);
+        if(input.value !== "" && isNumber(input.value)){
+            let input1 = document.querySelector("#lessThan-1");
+
+            //console.log(input1.value);
+
+            if(input1.value !== "" && isNumber(input1.value)){
+                let registers = lessThan(input1.value,input.value);
+
+                res.innerHTML = "=  "+((registers[0]) ? "Verdadeiro" : "Falso");
+
+                regA.innerHTML = "A = ("+registers[1].signal+", "+registers[1].magnitude+")";
+                regB.innerHTML = "B = ("+registers[2].signal+", "+registers[2].magnitude+")";
+            }
+        }
+    }
+}
+
+const handleLessThanEqual = (event) =>{
+    let input = event.target;
+    let res = document.querySelector("#resLessThanEqual");
+    let regA = document.querySelector("#lessThanEqual-A");
+    let regB = document.querySelector("#lessThanEqual-B");
+
+    res.innerHTML = "=";
+    regA.innerHTML = "A = ";
+    regB.innerHTML = "B = ";
+
+    if(input.id === "lessThanEqual-1"){
+        //console.log(input.value);
+        if(input.value !== "" && isNumber(input.value)){
+
+            let input2 = document.querySelector("#lessThanEqual-2");
+
+            //console.log(input2.value);
+
+            if(input2.value !== "" && isNumber(input2.value)){
+                let registers = lessThanEqual(input.value,input2.value);
+
+                res.innerHTML = "=  "+((registers[0]) ? "Verdadeiro" : "Falso");
+
+                regA.innerHTML = "A = ("+registers[1].signal+", "+registers[1].magnitude+")";
+                regB.innerHTML = "B = ("+registers[2].signal+", "+registers[2].magnitude+")";
+            }
+        }
+    }
+    else{
+        //console.log(input.value);
+        if(input.value !== "" && isNumber(input.value)){
+            let input1 = document.querySelector("#lessThanEqual-1");
+
+            //console.log(input1.value);
+
+            if(input1.value !== "" && isNumber(input1.value)){
+                let registers = lessThanEqual(input1.value,input.value);
+
+                res.innerHTML = "=  "+((registers[0]) ? "Verdadeiro" : "Falso");
+
+                regA.innerHTML = "A = ("+registers[1].signal+", "+registers[1].magnitude+")";
+                regB.innerHTML = "B = ("+registers[2].signal+", "+registers[2].magnitude+")";
+            }
+        }
+    }
+}
+
 //Start Panel
 let sumSection = document.querySelector(".sum-section");
 let sumContentSection = document.querySelector(".sum-content-section");
