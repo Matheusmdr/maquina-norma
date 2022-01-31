@@ -87,12 +87,12 @@
             <input type="number"  placeholder="valor 2" id="lessThan-2" onchange="handleLessThan(event)" onkeyup="handleLessThan(event)"/>
             <span id="resLessThan">=</span>
         </div>
-            <div class="registers-container">
-                <span>Registradores:</span>
-                <br>
-                <span id="lessThan-A">A = </span>
-                <span id="lessThan-B">B = </span>
-            </div>
+        <div class="registers-container">
+            <span>Registradores:</span>
+            <br>
+            <span id="lessThan-A">A = </span>
+            <span id="lessThan-B">B = </span>
+        </div>
     </section>
     <section class="section test-minorequal-section">
         <h2>
@@ -107,8 +107,8 @@
         <div class="registers-container">
             <span>Registradores:</span>
             <br>
-                <span id="lessThanEqual-A">A = </span>
-                <span id="lessThanEqual-B">B = </span>
+            <span id="lessThanEqual-A">A = </span>
+            <span id="lessThanEqual-B">B = </span>
         </div>
     </section>
     <section class="section prime-section">
@@ -116,9 +116,16 @@
             Testar se o valor de um registrador é um número primo
         </h2>
         <div class="inputs-container">
-            <input type="number" />
+            <input type="number" placeholder="número" min=0 id="prime-number" onchange="handlePrimeNumber(event)" onkeyup="handlePrimeNumber(event)"/>
         </div>
-        <div class="registers-container"><span>Registradores:</span></div>
+        <div class="registers-container">
+            <span>Registradores:</span>
+            <br>
+            <span id="prime-A">A = </span>
+            <span id="prime-B">B = </span>
+            <span id="prime-C">C = </span>
+            <span id="prime-D">D = </span>
+        </div>
     </section>
     <section class="section fat-pot-five">
         <h2>

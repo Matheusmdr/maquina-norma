@@ -229,3 +229,57 @@ const lessThanEqual = (a,b) => {
         return [true, A, B] // B >= 0
     }
 }
+
+const remainder = (dividend, divisor) =>{
+    let A = getRegister(0);
+    let B = getRegister(0);
+    let C = getRegister(0);
+    let D = getRegister(0);
+    let E = getRegister(0);
+
+    copyRegister(dividend, [A,C])
+    copyRegister(divisor, [B,E])
+
+    while(test(A.signal) && A.magnitude > 0) {
+
+        while(B.magnitude != 0){sub(A); sub(B); add(D);}
+
+        copyRegister(D,[B]);
+    }
+
+    copyRegister(C, [dividend])
+    copyRegister(E, [divisor])
+
+    return A.magnitude
+}
+
+const primeNumber = a => {
+    let A = getRegister(a);
+    let B = getRegister(0);
+    let C = getRegister(0);
+    let D = getRegister(0);
+
+    if(test(A.magnitude)) return [false, A, B, C, D]; // A == 0
+
+    sub(A);
+    if(test(A.magnitude)) return [false, A, B, C, D]; // A == 1
+    else add(A)
+
+    // A >= 2
+    copyRegister(A, [C, D])
+    copyRegister(D, [A])
+
+    //setting up the registers
+    add(B)
+    add(B)
+    sub(C)
+    sub(C)
+    
+    while(C.magnitude != 0){
+        if(test(remainder(A, B))) return [false, A, B, C, D]; //it's prime number
+        add(B)
+        sub(C)
+    }
+
+    return [true, A, B, C, D]; //it's not prime number
+}

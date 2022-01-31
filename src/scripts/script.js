@@ -64,12 +64,18 @@ buttons.forEach(button => {
     button.addEventListener('click', handleClickButton)
 })
 
-//onChange Functions
+//Util
 const isNumber = num => {
     let regex = new RegExp("^-?[0-9]+$");
-    return regex.test(num) ? "true"  : "false";
+    return (regex.test(num) ? true  : false);
 }
 
+const prime = num => {
+    let regex = new RegExp("^[0-9]+$");
+    return (regex.test(num) ? true  : false);
+}
+
+//onChange Functions
 const handleSumWithoutPreserving = (event) =>{
     let input = event.target;
     let res = document.querySelector("#resSum");
@@ -322,6 +328,35 @@ const handleLessThanEqual = (event) =>{
                 regB.innerHTML = "B = ("+registers[2].signal+", "+registers[2].magnitude+")";
             }
         }
+    }
+}
+
+const handlePrimeNumber = (event) =>{
+    let input = event.target;
+    let regA = document.querySelector("#prime-A");
+    let regB = document.querySelector("#prime-B");
+    let regC = document.querySelector("#prime-C");
+    let regD = document.querySelector("#prime-D");
+
+    input.style.background = "#fff";
+    input.style.border = "1px solid #fff";
+    regA.innerHTML = "A = ";
+    regB.innerHTML = "B = ";
+    regC.innerHTML = "C = ";
+    regD.innerHTML = "D = ";
+
+    //console.log(input.value);
+    if(input.value !== "" && prime(input.value)){
+        let registers = primeNumber(input.value);
+
+        input.style.background = ((registers[0]) ? "green" : "red");
+        input.style.border = "1px solid "+((registers[0]) ? "green" : "red");
+        input.style.borderRadius = "5px";
+        regA.innerHTML = "A = ("+registers[1].signal+", "+registers[1].magnitude+")";
+        regB.innerHTML = "B = ("+registers[2].signal+", "+registers[2].magnitude+")";
+        regC.innerHTML = "C = ("+registers[3].signal+", "+registers[3].magnitude+")";
+        regD.innerHTML = "D = ("+registers[4].signal+", "+registers[4].magnitude+")";
+        
     }
 }
 
