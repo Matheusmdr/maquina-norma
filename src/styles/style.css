@@ -67,6 +67,7 @@ body{
 }
 
 .registers-container{
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     text-align: center;
